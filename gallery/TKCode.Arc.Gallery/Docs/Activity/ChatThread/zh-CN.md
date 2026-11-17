@@ -1,7 +1,7 @@
 ---
 title: 聊天会话
 summary: 带分组消息、表情回应、已读回执、输入状态以及带附件输入区的聊天会话。
-source-hash: 99f8ef4800d0
+source-hash: ffbe34dfdbc2
 ---
 
 <Demo name="SupportConversation" />
@@ -25,6 +25,11 @@ source-hash: 99f8ef4800d0
 - **需要按日期从服务器分页加载的历史**：会话只显示给它的消息，不负责加载历史。在视图模型中加载分页，再加入集合。
 
 ## 用法
+
+引用 `TKCode.Arc.Markdown`，并在 `UseArc(...)` 中启用 `UseArcMarkdown()`；该包也包含 `ChatComposer`。
+消息中的代码需要彩色高亮时，引用 `TKCode.Arc.Highlighting` 并启用 `UseArcHighlighting()`。
+`UseArcBlocks()`、`UseArcSpecial()` 和 `UseArcA2UI()` 自动启用这两个包。
+`TKCode.Arc` 和 `arc:` 命名空间保持原样；拆包前编译的应用需要重新编译。
 
 `Participants` 列出对话中的人员，`CurrentUserId` 标明其中哪一位是你。你的消息以强调色显示在右侧，其他人的消息显示在左侧并附带姓名。消息按从旧到新排列，列表始终停留在最新一条上。
 

@@ -1,7 +1,7 @@
 ---
 title: 代码块
 summary: 只读的代码查看器，带文件名标题、语法着色与复制按钮。
-source-hash: d2bff149a7c5
+source-hash: 462cbce0d643
 ---
 
 <Demo name="Default" />
@@ -25,6 +25,10 @@ source-hash: d2bff149a7c5
 - **混合了标题、列表与代码的富文档**：用 `Markdown`，它会在文档流中以相同的语法配色渲染围栏代码。
 
 ## 用法
+
+`CodeBlock` 仍位于 `TKCode.Arc`。需要彩色代码时，引用 `TKCode.Arc.Highlighting`，
+并在 `UseArc(...)` 中启用 `UseArcHighlighting()`；否则源码显示为纯文本。
+`UseArcBlocks()`、`UseArcSpecial()` 和 `UseArcA2UI()` 自动启用高亮。
 
 ```xml
 <UserControl xmlns="https://github.com/avaloniaui"

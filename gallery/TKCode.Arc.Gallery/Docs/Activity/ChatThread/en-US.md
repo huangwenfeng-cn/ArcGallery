@@ -38,6 +38,11 @@ sends.
 
 ## Usage
 
+Reference `TKCode.Arc.Markdown` and enable `UseArcMarkdown()` inside `UseArc(...)`; this package also contains `ChatComposer`.
+For colored code in messages, reference `TKCode.Arc.Highlighting` and enable `UseArcHighlighting()`.
+`UseArcBlocks()`, `UseArcSpecial()` and `UseArcA2UI()` enable both packages automatically.
+The `TKCode.Arc` and `arc:` namespaces are unchanged; applications built before the package split need to be rebuilt.
+
 `Participants` lists the people in the conversation, and `CurrentUserId` marks which of them is you. Your messages sit on
 the right in the accent color, and other people's messages sit on the left with their names. Messages are ordered from
 oldest to newest, and the list stays pinned to the newest one.

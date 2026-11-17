@@ -37,6 +37,10 @@ and know which file it belongs to, without giving them an editor.
 
 ## Usage
 
+`CodeBlock` remains in `TKCode.Arc`. For colored code, reference `TKCode.Arc.Highlighting` and enable
+`UseArcHighlighting()` inside `UseArc(...)`; otherwise the source is shown as plain text.
+`UseArcBlocks()`, `UseArcSpecial()` and `UseArcA2UI()` enable highlighting automatically.
+
 ```xml
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:arc="https://github.com/AIDotNet/TKCode.Arc">

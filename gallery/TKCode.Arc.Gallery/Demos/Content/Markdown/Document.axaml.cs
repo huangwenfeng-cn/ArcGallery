@@ -21,9 +21,9 @@ public partial class MarkdownDocumentDemo : UserControl
               - Unknown languages stay plain text.
             - Light, dark and the accent switch live.
 
-            1. Add the package.
-            2. Call `UseArcControls()` in `UseArc(...)`.
-            3. Drop `<arc:Markdown Text="..." />` into a view.
+            1. Add `TKCode.Arc.Markdown` and `TKCode.Arc.Highlighting`.
+            2. Call `UseArcMarkdown()` and `UseArcHighlighting()` in `UseArc(...)`.
+            3. Drop `<arc:Markdown Text="..." />` into a view; rebuild apps compiled before the package split.
 
             - [x] Static documents
             - [x] Streamed replies

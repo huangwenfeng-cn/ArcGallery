@@ -39,6 +39,11 @@ text in a panel, a chat bubble or a document view looks like the rest of the app
 
 ## Usage
 
+Reference `TKCode.Arc.Markdown` and enable `UseArcMarkdown()` inside `UseArc(...)`.
+For colored fenced code, also reference `TKCode.Arc.Highlighting` and enable `UseArcHighlighting()`.
+`UseArcBlocks()`, `UseArcSpecial()` and `UseArcA2UI()` enable both packages automatically.
+The control keeps the `TKCode.Arc` and `arc:` namespaces; applications built before the package split need to be rebuilt.
+
 Static text is set with `Text`. The document grows with its content and has no internal scrolling.
 
 ```xml

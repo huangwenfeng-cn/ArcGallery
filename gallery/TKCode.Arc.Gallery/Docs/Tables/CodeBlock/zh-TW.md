@@ -1,7 +1,7 @@
 ---
 title: 程式碼區塊
 summary: 唯讀的程式碼檢視器，帶檔名標題、語法著色與複製按鈕。
-source-hash: d2bff149a7c5
+source-hash: 462cbce0d643
 ---
 
 <Demo name="Default" />
@@ -25,6 +25,10 @@ source-hash: d2bff149a7c5
 - **混合了標題、清單與程式碼的豐富文件**：用 `Markdown`，它會在文件流中以相同的語法配色呈現圍欄程式碼。
 
 ## 用法
+
+`CodeBlock` 仍位於 `TKCode.Arc`。需要彩色程式碼時，引用 `TKCode.Arc.Highlighting`，
+並在 `UseArc(...)` 中啟用 `UseArcHighlighting()`；否則原始碼顯示為純文字。
+`UseArcBlocks()`、`UseArcSpecial()` 和 `UseArcA2UI()` 自動啟用醒目提示。
 
 ```xml
 <UserControl xmlns="https://github.com/avaloniaui"

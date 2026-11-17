@@ -9,6 +9,7 @@ public static class GalleryBuilderExtensions
 {
     /// <summary>
     /// Registers the gallery's shell text (<c>Localization/*.xlf</c>) and enables everything the gallery's pages show: the
+    /// Markdown (<c>UseArcMarkdown()</c>), code highlighting (<c>UseArcHighlighting()</c>),
     /// blocks (<c>UseArcBlocks()</c>), the mobile components (<c>UseArcMobile()</c>), the Pixel and corner styles the
     /// Appearance panel offers (<c>UseArcPixelTheme()</c>, <c>UseArcCorners()</c>), <c>UseArcAdvancedCharts()</c>,
     /// <c>UseArcWorkflow()</c>, <c>UseArcDock()</c>, <c>UseArcVideo()</c>, <c>UseArcPdf()</c> and <c>UseArcSpecial()</c>. Call it inside <c>UseArc(...)</c> in every host that shows a
@@ -34,6 +35,9 @@ public static class GalleryBuilderExtensions
     private static ArcPackageBuilder DependsOnAllButSpecial(ArcPackageBuilder package)
         => ArcGeneratedAssets.AddTo(package
             .DependsOn(static b => b.UseArcControls())
+            // 文档正文和代码示例直接依赖这两个包，不依赖 Blocks 的间接注册。
+            .DependsOn(static b => b.UseArcMarkdown())
+            .DependsOn(static b => b.UseArcHighlighting())
             .DependsOn(static b => b.UseArcBlocks())
             .DependsOn(static b => b.UseArcAdvancedCharts())
             .DependsOn(static b => b.UseArcWorkflow())

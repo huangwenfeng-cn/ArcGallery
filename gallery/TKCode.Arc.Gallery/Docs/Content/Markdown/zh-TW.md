@@ -1,7 +1,7 @@
 ---
 title: Markdown
 summary: 以 Arc 的風格渲染 Markdown 文件與串流回覆，程式碼區塊使用 Arc 的語法配色高亮。
-source-hash: 79985ea6ceb9
+source-hash: b1d6229bc2fb
 ---
 
 <Demo name="Document" />
@@ -25,6 +25,11 @@ source-hash: 79985ea6ceb9
 - **數學公式、圖表或其他嵌入式格式**：`Markdown` 渲染文字、程式碼和表格。需要時，請把 StreamMark 的數學或圖表外掛加入你自己的 `MarkdownServices`，而不是在文字中貼上圖片。
 
 ## 用法
+
+引用 `TKCode.Arc.Markdown`，並在 `UseArc(...)` 中啟用 `UseArcMarkdown()`。
+圍欄程式碼需要彩色醒目提示時，再引用 `TKCode.Arc.Highlighting` 並啟用 `UseArcHighlighting()`。
+`UseArcBlocks()`、`UseArcSpecial()` 和 `UseArcA2UI()` 自動啟用這兩個套件。
+控制項仍使用 `TKCode.Arc` 和 `arc:` 命名空間；拆包前編譯的應用程式需要重新編譯。
 
 靜態文字透過 `Text` 設定。文件隨內容增長，內部沒有捲動。
 
