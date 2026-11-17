@@ -101,6 +101,7 @@ public static class GalleryText
             "Avatars" => GalleryShellLangResourceKind.Category_Avatars,
             "Cards" => GalleryShellLangResourceKind.Category_Cards,
             "Charts" => GalleryShellLangResourceKind.Category_Charts,
+            "CustomCharts" => GalleryShellLangResourceKind.Category_CustomCharts,
             "AdvancedCharts" => GalleryShellLangResourceKind.Category_AdvancedCharts,
             "Workflow" => GalleryShellLangResourceKind.Category_Workflow,
             "Dock" => GalleryShellLangResourceKind.Category_Dock,

@@ -81,6 +81,11 @@
         <source>Charts</source>
       </segment>
     </unit>
+    <unit id="Category_CustomCharts">
+      <segment>
+        <source>Custom charts</source>
+      </segment>
+    </unit>
     <unit id="Category_AdvancedCharts">
       <segment>
         <source>Advanced charts</source>

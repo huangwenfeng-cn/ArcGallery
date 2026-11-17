@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.ThermometerReadingsDemo">
+    <StackPanel Spacing="20">
+        <arc:Thermometer x:Name="Live" Label="设备温度" Value="36.5" />
+        <arc:Slider x:Name="Temperature" Minimum="-20" Maximum="100" Value="36.5" />
+        <WrapPanel HorizontalAlignment="Center" ItemSpacing="12" LineSpacing="12">
+            <arc:Button Content="低温 −8 °C" Variant="Secondary" Click="OnLowClick" />
+            <arc:Button Content="正常 36.5 °C" Variant="Secondary" Click="OnNormalClick" />
+            <arc:Button Content="高温 86 °C" Variant="Secondary" Click="OnHighClick" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

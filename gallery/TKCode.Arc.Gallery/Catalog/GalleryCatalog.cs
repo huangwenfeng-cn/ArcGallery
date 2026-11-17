@@ -241,6 +241,17 @@ public static partial class GalleryCatalog
                 "A touch keyboard for kiosks and panels without a physical one: QWERTY, a number pad, a PIN pad or a layout of your own, typing into the focused field without taking its focus.",
                 IsArc: false, AddedOn: "2026-11-13"),
         ], IsArc: false),
+        // 本地新增图表集中登记在独立分类；保留原加入日期和 slug，迁移不改变页面身份。
+        // 分类与组件均没有 uiarc.dev 原版页面，因此使用 IsArc: false。
+        new("CustomCharts", "Custom charts", "自定义图表",
+        [
+            new("Thermometer", "Thermometer", "thermometer", 8,
+                "A temperature meter with a liquid column, scale and named threshold states.",
+                IsArc: false, AddedOn: "2026-11-16"),
+            new("WindDirectionIndicator", "Wind direction indicator", "wind-direction-indicator", 8,
+                "A live wind-origin compass with optional direction reading and explicit calm or missing-data states.",
+                IsArc: false, AddedOn: "2026-11-17"),
+        ], IsArc: false),
     ];
 
     /// <summary>
@@ -606,10 +617,13 @@ public static partial class GalleryCatalog
     /// <summary>The agents group (TKCode.Arc.A2UI); listed after PDF, not part of the Arc components.</summary>
     public static GalleryCategory Agents => Extras[5];
 
-    /// <summary>The Components section of the sidebar: Arc's groups with Advanced charts, Workflow, Dock, Video, PDF and Agents after Charts, then the other extras.</summary>
+    /// <summary>The local custom charts group, whose controls live in TKCode.Arc and share its tokens and themes.</summary>
+    public static GalleryCategory CustomCharts => Extras.First(c => c.Code == "CustomCharts");
+
+    /// <summary>The Components section of the sidebar: Arc's groups with Custom charts, Advanced charts, Workflow, Dock, Video, PDF and Agents after Charts, then the other extras.</summary>
     public static IEnumerable<GalleryCategory> AllCategories => s_allCategories ??=
-        Categories.SelectMany(c => c.Code == "Charts" ? new[] { c, AdvancedCharts, Workflow, Dock, Video, Pdf, Agents } : new[] { c })
-                  .Concat(Extras.Where(e => !ReferenceEquals(e, AdvancedCharts) && !ReferenceEquals(e, Workflow) && !ReferenceEquals(e, Dock) && !ReferenceEquals(e, Video) && !ReferenceEquals(e, Pdf) && !ReferenceEquals(e, Agents)))
+        Categories.SelectMany(c => c.Code == "Charts" ? new[] { c, CustomCharts, AdvancedCharts, Workflow, Dock, Video, Pdf, Agents } : new[] { c })
+                  .Concat(Extras.Where(e => !ReferenceEquals(e, CustomCharts) && !ReferenceEquals(e, AdvancedCharts) && !ReferenceEquals(e, Workflow) && !ReferenceEquals(e, Dock) && !ReferenceEquals(e, Video) && !ReferenceEquals(e, Pdf) && !ReferenceEquals(e, Agents)))
                   .ToArray();
 
     // The lists below are built once, when first read: they are read on every page opening. Not in field initializers, whose

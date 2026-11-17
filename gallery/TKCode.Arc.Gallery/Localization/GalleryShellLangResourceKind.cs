@@ -394,4 +394,6 @@ public enum GalleryShellLangResourceKind
     HomeCommunityText,
     HomeCommunityGroup,
     HomeCommunityCopy,
+    // 新分类追加到末尾，保留现有语言键枚举的数值。
+    Category_CustomCharts,
 }

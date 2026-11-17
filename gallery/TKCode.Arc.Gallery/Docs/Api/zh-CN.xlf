@@ -4,6 +4,130 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" target-language="zh-CN" datatype="plaintext" original="TKCode.Arc">
     <body>
+      <trans-unit id="WindDirectionIndicator">
+        <source>A read-only compass showing meteorological wind origin, with an optional direction reading and explicit calm or missing-data states.</source>
+        <target>只读罗盘，显示气象风的来向，提供可选方向读数以及明确的静风、无数据状态。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.Direction">
+        <source>Wind origin in degrees clockwise from north (default 0); finite values wrap into [0, 360).</source>
+        <target>风的来向，以北为零点顺时针计度，默认为 0；有限值归一化到 [0, 360)。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.HasData">
+        <source>Whether the measurement is available (default true); false hides the arrow and all measured values.</source>
+        <target>测量值是否可用，默认为 true；false 时隐藏箭头及所有测量读数。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.IsCalm">
+        <source>Whether the application reports calm wind (default false); calm hides the arrow and direction. No calm threshold is inferred.</source>
+        <target>应用是否报告静风，默认为 false；静风隐藏箭头和方向。控件不会推断静风阈值。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.ShowReading">
+        <source>Whether to show the direction reading below the compass (default false); enabled adds 32 drawing units to its height.</source>
+        <target>是否在罗盘下方显示方向读数，默认为 false；开启后高度增加 32 个绘图单位。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.Label">
+        <source>Accessible name; null follows the application's language. Place visible headings outside the compass.</source>
+        <target>无障碍名称；null 时跟随应用语言。可见标题放在罗盘外部。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.CalmLabel">
+        <source>Custom calm text; null follows the application's language.</source>
+        <target>自定义静风文字；null 时跟随应用语言。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.NoDataLabel">
+        <source>Custom missing-data text; null follows the application's language.</source>
+        <target>自定义无数据文字；null 时跟随应用语言。</target>
+      </trans-unit>
+      <trans-unit id="ArcWindow.UnavailableCaptionButtons">
+        <source>What the drawn minimize and maximize buttons show while the window does not allow them (`CanMinimize`, or `CanResize` and `CanMaximize`, false): `Disable` (the default) keeps them disabled, `Hide` hides them. Inherited by the window's `TitleBar` and any `WindowCaptionButtons` in it. The macOS traffic lights are the system's and stay as they are.</source>
+        <target>窗口不允许最小化或最大化时（`CanMinimize` 为 false，或 `CanResize`、`CanMaximize` 中任一为 false），所绘制按钮的显示方式：默认的 `Disable` 保留并禁用按钮，`Hide` 隐藏按钮。窗口的 `TitleBar` 及其中的 `WindowCaptionButtons` 会继承此设置。macOS 红绿灯按钮由系统管理，保持原样。</target>
+      </trans-unit>
+      <trans-unit id="TitleBar.ShowCloseButton">
+        <source>Shows the close button when the bar draws the caption buttons. True by default.</source>
+        <target>标题栏绘制窗口按钮时显示关闭按钮。默认为 True。</target>
+      </trans-unit>
+      <trans-unit id="TitleBar.ShowMaximizeButton">
+        <source>Shows the maximize / restore button when the bar draws the caption buttons. True by default.</source>
+        <target>标题栏绘制窗口按钮时显示最大化 / 还原按钮。默认为 True。</target>
+      </trans-unit>
+      <trans-unit id="TitleBar.ShowMinimizeButton">
+        <source>Shows the minimize button when the bar draws the caption buttons. True by default.</source>
+        <target>标题栏绘制窗口按钮时显示最小化按钮。默认为 True。</target>
+      </trans-unit>
+      <trans-unit id="TitleBar.UnavailableCaptionButtons">
+        <source>What the drawn minimize and maximize show while the window does not allow them (`CanMinimize`, or `CanResize` and `CanMaximize`, false): `Disable` (the default) keeps them disabled, `Hide` hides them. Inherited from the window, so `UnavailableCaptionButtons="Hide"` on the `ArcWindow` reaches the bar. The macOS traffic lights (`System`) are the system's and stay as they are.</source>
+        <target>窗口不允许最小化或最大化时（`CanMinimize` 为 false，或 `CanResize`、`CanMaximize` 中任一为 false），所绘制按钮的显示方式：默认的 `Disable` 保留并禁用按钮，`Hide` 隐藏按钮。此设置从窗口继承，因此在 `ArcWindow` 上设置 `UnavailableCaptionButtons="Hide"` 也会作用于标题栏。macOS 红绿灯按钮（`System`）由系统管理，保持原样。</target>
+      </trans-unit>
+      <trans-unit id="WindowCaptionButtons.UnavailableCaptionButtons">
+        <source>What minimize and maximize show while the window does not allow them (`CanMinimize`, or `CanResize` and `CanMaximize`, false): `Disable` (the default) keeps them disabled, `Hide` hides them. Inherited, so it can be set on the window (`ArcWindow`) or a `TitleBar`.</source>
+        <target>窗口不允许最小化或最大化时（`CanMinimize` 为 false，或 `CanResize`、`CanMaximize` 中任一为 false），按钮的显示方式：默认的 `Disable` 保留并禁用按钮，`Hide` 隐藏按钮。此属性可继承，因此也可以在窗口（`ArcWindow`）或 `TitleBar` 上设置。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer">
+        <source>A read-only temperature meter with a spring-driven liquid column, scale, actual reading and named threshold state.</source>
+        <target>只读温度仪表，带弹簧液柱、刻度、实际读数和明确的阈值状态。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.Value">
+        <source>The actual temperature; an out-of-range reading is kept while the liquid is clamped.</source>
+        <target>实际温度；越界读数仍保留，液柱限制在量程内。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.Minimum">
+        <source>Lower end of the measurement range (default -20).</source>
+        <target>量程下限，默认为 -20。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.Maximum">
+        <source>Upper end of the measurement range (default 100).</source>
+        <target>量程上限，默认为 100。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.LowThreshold">
+        <source>Readings below this value are low (default 10).</source>
+        <target>读数低于此值时为低温，默认为 10。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.HighThreshold">
+        <source>Readings at or above this value are high (default 70).</source>
+        <target>读数大于等于此值时为高温，默认为 70。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.Label">
+        <source>What is measured; shown above the stem and used as the accessible name.</source>
+        <target>测量对象，显示在液柱上方，同时作为无障碍名称。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.Unit">
+        <source>The display unit (default °C); changing it does not convert values or thresholds.</source>
+        <target>显示单位，默认为 °C；修改单位不会转换温度或阈值。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.TickCount">
+        <source>Number of scale divisions, from 2 to 24 (default 12).</source>
+        <target>刻度分格数，范围为 2～24，默认为 12。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.ShowScale">
+        <source>Whether to draw the scale and its values (default true).</source>
+        <target>是否显示刻度及其数值，默认为 true。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.LowTone">
+        <source>Color family for low readings (default Accent).</source>
+        <target>低温读数的色调，默认为 Accent。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.NormalTone">
+        <source>Color family for normal readings (default Success).</source>
+        <target>正常读数的色调，默认为 Success。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.HighTone">
+        <source>Color family for high readings (default Danger).</source>
+        <target>高温读数的色调，默认为 Danger。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.LowLabel">
+        <source>Custom low-state text; null uses the app's language.</source>
+        <target>自定义低温状态文字；null 时跟随应用语言。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.NormalLabel">
+        <source>Custom normal-state text; null uses the app's language.</source>
+        <target>自定义正常状态文字；null 时跟随应用语言。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.HighLabel">
+        <source>Custom high-state text; null uses the app's language.</source>
+        <target>自定义高温状态文字；null 时跟随应用语言。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.State">
+        <source>The band of the actual reading; changes immediately, independently of animation.</source>
+        <target>实际读数的状态，立即变化，不受动画影响。</target>
+      </trans-unit>
       <trans-unit id="A2UISurfaceView">
         <source>Shows one A2UI surface with Arc controls. Give it a `Renderer` and a `SurfaceId` (it waits for the surface to be created and clears when it is deleted), or a `Surface` directly. User input is written to the surface's data model and actions are sent through the renderer's `Outbound`.</source>
         <target>用 Arc 控件显示一个 A2UI 界面。给它 `Renderer` 和 `SurfaceId`（它会等到界面被创建，界面被删除时清空），或直接给 `Surface`。用户输入写入界面的数据模型，动作通过渲染器的 `Outbound` 发出。</target>
@@ -42113,8 +42237,8 @@
         <target>应用希望与该日历一同保存的任意对象。</target>
       </trans-unit>
       <trans-unit id="WindowCaptionButtons">
-        <source>Minimize, maximize / restore and close for a window whose content reaches the top (an `ArcWindow` with `IsTitleBarVisible="False"`), placed wherever the app draws its own header. The buttons drive the window they are in and follow it: maximize shows restore while the window is maximized and is disabled while the window cannot grow (`CanResize` or `CanMaximize` false), minimize while `CanMinimize` is false. On Windows they tell the system what they are, so the maximize button opens Snap Layouts. `TitleBar` draws its own caption buttons with this control; show one set per window.</source>
-        <target>内容延伸到顶部的窗口（`IsTitleBarVisible="False"` 的 `ArcWindow`）所用的最小化、最大化 / 还原和关闭按钮，可放在应用自己绘制的页头中的任意位置。按钮控制所在的窗口并跟随其状态：窗口最大化时最大化按钮显示为还原，窗口不能放大时（`CanResize` 或 `CanMaximize` 为 false）最大化按钮禁用，`CanMinimize` 为 false 时最小化按钮禁用。在 Windows 上，它们会告诉系统自己是什么按钮，因此最大化按钮会打开贴靠布局。`TitleBar` 也用这个控件绘制自己的标题栏按钮；每个窗口只显示一组。</target>
+        <source>Minimize, maximize / restore and close for a window whose content reaches the top (an `ArcWindow` with `IsTitleBarVisible="False"`), placed wherever the app draws its own header. The buttons drive the window they are in and follow it: maximize shows restore while the window is maximized and is disabled while the window cannot grow (`CanResize` or `CanMaximize` false), minimize while `CanMinimize` is false; with `UnavailableCaptionButtons` set to `Hide` they are hidden instead. On Windows they tell the system what they are, so the maximize button opens Snap Layouts. `TitleBar` draws its own caption buttons with this control; show one set per window.</source>
+        <target>内容延伸到顶部的窗口（`IsTitleBarVisible="False"` 的 `ArcWindow`）所用的最小化、最大化 / 还原和关闭按钮，可放在应用自己绘制的页头中的任意位置。按钮控制所在的窗口并跟随其状态：窗口最大化时最大化按钮显示为还原，窗口不能放大时（`CanResize` 或 `CanMaximize` 为 false）最大化按钮禁用，`CanMinimize` 为 false 时最小化按钮禁用；将 `UnavailableCaptionButtons` 设为 `Hide` 则隐藏这些不可用按钮。在 Windows 上，它们会告诉系统自己是什么按钮，因此最大化按钮会打开贴靠布局。`TitleBar` 也用这个控件绘制自己的标题栏按钮；每个窗口只显示一组。</target>
       </trans-unit>
       <trans-unit id="WindowCaptionButtons.IsPreview">
         <source>True draws the buttons without driving the window: they minimize, maximize and close nothing and the system does not treat them as caption buttons. For previews, such as a mock-up of a window inside a page. False by default.</source>

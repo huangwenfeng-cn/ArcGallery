@@ -97,6 +97,12 @@
         <target state="translated">圖表</target>
       </segment>
     </unit>
+    <unit id="Category_CustomCharts">
+      <segment>
+        <source>Custom charts</source>
+        <target state="translated">自訂圖表</target>
+      </segment>
+    </unit>
     <unit id="Category_AdvancedCharts">
       <segment>
         <source>Advanced charts</source>
