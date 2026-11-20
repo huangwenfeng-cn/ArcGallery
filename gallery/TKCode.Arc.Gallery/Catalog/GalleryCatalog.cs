@@ -251,6 +251,15 @@ public static partial class GalleryCatalog
             new("WindDirectionIndicator", "Wind direction indicator", "wind-direction-indicator", 8,
                 "A live wind-origin compass with optional direction reading and explicit calm or missing-data states.",
                 IsArc: false, AddedOn: "2026-11-17"),
+            new("StatusIndicator", "Status indicator", "status-indicator", 8,
+                "A read-only device status lamp with localized text and optional blinking.",
+                IsArc: false, AddedOn: "2026-11-17"),
+            new("LevelIndicator", "Level indicator", "level-indicator", 8,
+                "A read-only level meter that fills a vessel with a spring-driven liquid column beside a scale and named threshold states.",
+                IsArc: false, AddedOn: "2026-11-17"),
+            new("LinearGauge", "Linear gauge", "linear-gauge", 8,
+                "A read-only vertical range meter with a narrow bar, scale, actual reading and named threshold states.",
+                IsArc: false, AddedOn: "2026-11-17"),
         ], IsArc: false),
     ];
 

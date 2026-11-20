@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             xmlns:demos="using:TKCode.Arc.Gallery.Demos"
+             x:Class="TKCode.Arc.Gallery.Demos.MetricCardMeasurementsDemo"
+             x:DataType="demos:MetricCardMeasurementsDemo">
+    <!-- 阅读顺序：先看下方绑定的三个数据源，再看这里的两种模板，最后看按钮处理方法。
+         Content 绑定的是显示快照：有效快照用 MetricCard，其他快照用占位表面。
+         替换 Content 会移除旧数字的可视树与自动化节点，不是给旧数字盖一层遮挡物。 -->
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="demos:MeasurementNumberSnapshot" x:DataType="demos:MeasurementNumberSnapshot">
+            <arc:MetricCard Label="{Binding Label}"
+                            Value="{Binding Value}"
+                            Suffix="{Binding Unit}"
+                            Decimals="{Binding Decimals}"
+                            Context="{Binding Context}"
+                            MinHeight="180" />
+        </DataTemplate>
+        <DataTemplate DataType="demos:MeasurementUnavailableSnapshot" x:DataType="demos:MeasurementUnavailableSnapshot">
+            <!-- 这里没有 Value 绑定。状态无效时，不向视觉树传入保存值，也不把它改成零。
+                 颜色来自动态主题资源；文字同时说明质量，因此不依赖颜色识别。 -->
+            <Border MinHeight="180"
+                    Padding="{arc:MetricCardTokenResource CardPadding}"
+                    Background="{arc:ArcDesignTokenResource Surface}"
+                    BorderBrush="{arc:ArcDesignTokenResource Border}"
+                    BorderThickness="{arc:ArcDesignTokenResource EdgeThickness}"
+                    CornerRadius="{arc:ArcDesignTokenResource RadiusSurface}"
+                    BoxShadow="{arc:ArcDesignTokenResource ShadowResting}"
+                    AutomationProperties.Name="{Binding Label}"
+                    AutomationProperties.HelpText="{Binding Context}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Label}"
+                               Margin="{arc:MetricCardTokenResource TopRowMargin}"
+                               Foreground="{arc:ArcDesignTokenResource TextSecondary}" />
+                    <TextBlock Text="—"
+                               FontSize="{arc:ArcDesignTokenResource Type3XL}"
+                               FontFamily="{arc:ArcDesignTokenResource DisplayFontFamily}"
+                               FontWeight="{arc:ArcDesignTokenResource WeightMedium}"
+                               Foreground="{arc:ArcDesignTokenResource TextMuted}" />
+                    <TextBlock Text="{Binding Context}"
+                               Margin="{arc:MetricCardTokenResource ContextMargin}"
+                               Classes.stale="{Binding IsStale}" Classes.error="{Binding IsError}">
+                        <TextBlock.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="Foreground" Value="{arc:ArcDesignTokenResource TextMuted}" />
+                            </Style>
+                            <Style Selector="TextBlock.stale">
+                                <Setter Property="Foreground" Value="{arc:ArcDesignTokenResource Warning}" />
+                            </Style>
+                            <Style Selector="TextBlock.error">
+                                <Setter Property="Foreground" Value="{arc:ArcDesignTokenResource Danger}" />
+                            </Style>
+                        </TextBlock.Styles>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+    <!-- Off 在这个示例内继承：真实读数立即显示，不从零滚动，也不延迟恢复。
+         字体和字重同样使用动态资源；没有创建计时器、采集连接或全局事件订阅。 -->
+    <StackPanel Spacing="16"
+                arc:ArcMotion.Level="Off"
+                TextElement.FontFamily="{arc:ArcDesignTokenResource BodyFontFamily}"
+                TextElement.FontSize="{arc:ArcDesignTokenResource TypeSM}"
+                TextElement.FontWeight="{arc:ArcDesignTokenResource WeightRegular}">
+        <WrapPanel HorizontalAlignment="Center" ItemSpacing="12" LineSpacing="12">
+            <ContentControl Content="{Binding WindSpeed.Display}" Width="280" />
+            <ContentControl Content="{Binding Humidity.Display}" Width="280" />
+            <ContentControl Content="{Binding Pressure.Display}" Width="280" />
+        </WrapPanel>
+        <WrapPanel HorizontalAlignment="Center" ItemSpacing="8" LineSpacing="8">
+            <arc:Button Content="采样 / 恢复" Variant="Secondary" Click="OnSampleClick" />
+            <arc:Button Content="零风速" Variant="Ghost" Click="OnZeroWindClick" />
+            <arc:Button Content="无数据" Variant="Ghost" Tag="{x:Static arc:MeasurementQuality.NoData}" Click="OnQualityClick" />
+            <arc:Button Content="数据过期" Variant="Ghost" Tag="{x:Static arc:MeasurementQuality.Stale}" Click="OnQualityClick" />
+            <arc:Button Content="采集异常" Variant="Ghost" Tag="{x:Static arc:MeasurementQuality.Error}" Click="OnQualityClick" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

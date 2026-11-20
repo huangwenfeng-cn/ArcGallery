@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.ThermometerQualityStatesDemo">
+    <!-- 四个独立实例保存相同的 86 度，只改变质量，方便对照“有值”和“值有效”的区别。
+         WrapPanel 在宽度不足时自动换行；这些只是演示实例，没有复制组件实现代码。 -->
+    <WrapPanel HorizontalAlignment="Center" ItemSpacing="16" LineSpacing="16">
+        <arc:Thermometer Label="Good" Value="86" />
+        <arc:Thermometer Label="NoData" Value="86" Quality="NoData" />
+        <arc:Thermometer Label="Stale" Value="86" Quality="Stale" />
+        <arc:Thermometer Label="Error" Value="86" Quality="Error" />
+    </WrapPanel>
+</UserControl>

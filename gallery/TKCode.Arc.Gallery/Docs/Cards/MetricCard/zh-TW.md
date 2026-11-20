@@ -1,7 +1,7 @@
 ---
 title: 指標卡
 summary: 儀表板上的指標卡片：一個數字、它的標籤、對比值與可選的變化標籤。
-source-hash: c308e2fa9738
+source-hash: c82256a79dae
 ---
 
 <Demo name="Default" />
@@ -169,6 +169,16 @@ public partial class OverviewViewModel : ObservableObject
 - 編譯繫結需要在檢視上設定 `x:DataType`。範例為求簡潔省略了它。
 
 每次更新時，數字都會滾動到新值，文案則從數字變化的方向滾入，因此每隔幾秒到達一次的更新會讓這一列持續處於動態之中。對於即時資料串流，請以固定間隔更新檢視模型，例如每 30 秒一次。
+
+### 測量讀數與資料品質
+
+<Demo name="Measurements" />
+
+這個中文示範組合展示風速、相對濕度和氣壓，重用既有元件。`MetricCard` 保持現有 API 和分類。每項讀數的量值、單位及 `MeasurementQuality` 由應用程式提供，時效和警報也由應用程式判定。`Change` 表示統計增減方向，不適合作為警報指示。
+
+示範初始為 `NoData`。有效取樣建立數值快照，繫結到 `Value`、`Suffix` 和 `Decimals`。`NoData`、`Stale`、`Error` 會把快照換成破折號和明確的品質文字。最後有限值保留在資料來源中，但舊計數器會同時從視覺樹和自動化樹移除。有效的零風速仍顯示 `0.0 m/s`。非有限值樣本降級為 `Error`，保留最後有限值。範例不包含取樣計時器或閘道。
+
+局部容器設定 `ArcMotion.Level="Off"`，目前讀數與恢復立即顯示。在 UI 執行緒呼叫示範資料來源的 SetSample(新值, MeasurementQuality.Good) 恢復；僅改變品質會重用保存值。資料來源先完成欄位和顯示快照，再通知繫結，同值恢復也會更新。編譯繫結和帶註解的實作見範例的「程式碼」頁；實際應用程式應從自己的語言資源提供標籤和品質文字。
 
 ### 窄視窗
 

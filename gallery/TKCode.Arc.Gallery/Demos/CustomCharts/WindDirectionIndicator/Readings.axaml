@@ -1,17 +1,25 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
-             x:Class="TKCode.Arc.Gallery.Demos.WindDirectionIndicatorReadingsDemo">
+             x:Class="TKCode.Arc.Gallery.Demos.WindDirectionIndicatorReadingsDemo"
+             x:Name="Feedback">
     <!-- 单个罗盘展示真实组件；滑块与按钮由后台代码模拟采样和状态切换。
          视觉资源来自组件主题，示例无需再指定颜色、字体或指针几何。 -->
     <StackPanel Spacing="20">
-        <arc:WindDirectionIndicator x:Name="Live" Direction="22.5" />
+        <!-- #Feedback 是根 UserControl 的名字，Quality 读取它的 SampleQuality。
+             Direction、HasData、IsCalm 与 Quality 各有职责，后台模拟采样时分别更新。 -->
+        <arc:WindDirectionIndicator x:Name="Live" Direction="22.5"
+                                    Quality="{Binding #Feedback.SampleQuality}" />
         <arc:Slider x:Name="Bearing" Minimum="0" Maximum="360" Value="22.5" />
         <WrapPanel HorizontalAlignment="Center" ItemSpacing="12" LineSpacing="12">
             <arc:Button Content="北向 359°" Variant="Secondary" Click="OnBeforeNorthClick" />
             <arc:Button Content="北向 1°" Variant="Secondary" Click="OnAfterNorthClick" />
             <arc:Button Content="静风" Variant="Secondary" Click="OnCalmClick" />
             <arc:Button Content="无数据" Variant="Secondary" Click="OnNoDataClick" />
+            <!-- 按钮文字和程序状态分开：Tag 保存枚举，Click 使用同一个质量处理函数。 -->
+            <arc:Button Content="数据过期" Tag="{x:Static arc:MeasurementQuality.Stale}" Variant="Secondary" Click="OnQualityClick" />
+            <arc:Button Content="采集异常" Tag="{x:Static arc:MeasurementQuality.Error}" Variant="Secondary" Click="OnQualityClick" />
+            <arc:Button Content="恢复数据" Tag="{x:Static arc:MeasurementQuality.Good}" Variant="Secondary" Click="OnQualityClick" />
             <arc:Button Content="方向读数" Variant="Secondary" Click="OnReadingClick" />
         </WrapPanel>
     </StackPanel>

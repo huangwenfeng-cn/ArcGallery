@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.StatusIndicatorStatesDemo"
+             x:Name="Feedback">
+    <StackPanel Spacing="24">
+        <WrapPanel ItemSpacing="24" LineSpacing="16">
+            <arc:StatusIndicator State="Unknown" />
+            <arc:StatusIndicator State="Offline" />
+            <arc:StatusIndicator State="Idle" />
+            <arc:StatusIndicator State="Running" />
+            <arc:StatusIndicator State="Warning" />
+            <arc:StatusIndicator State="Fault" />
+        </WrapPanel>
+        <!-- 后台按钮模拟设备反馈，设备接入时改为绑定 ViewModel 的反馈状态。
+             #Feedback.FeedbackState 读取根演示控件的数据源；
+             #Blink/#Labels 分别读取下方开关。绑定让开关与灯保持同步，无需另写重复事件。 -->
+        <arc:StatusIndicator x:Name="Target" State="{Binding #Feedback.FeedbackState}"
+                             AutomationProperties.Name="Pump P-101"
+                             IsBlinking="{Binding #Blink.IsChecked}"
+                             ShowLabel="{Binding #Labels.IsChecked}" />
+        <WrapPanel ItemSpacing="12" LineSpacing="12">
+            <arc:Button Content="Unknown" Tag="{x:Static arc:StatusIndicatorState.Unknown}" Variant="Secondary" Click="OnStateClick" />
+            <arc:Button Content="Offline" Tag="{x:Static arc:StatusIndicatorState.Offline}" Variant="Secondary" Click="OnStateClick" />
+            <arc:Button Content="Idle" Tag="{x:Static arc:StatusIndicatorState.Idle}" Variant="Secondary" Click="OnStateClick" />
+            <arc:Button Content="Running" Tag="{x:Static arc:StatusIndicatorState.Running}" Variant="Secondary" Click="OnStateClick" />
+            <arc:Button Content="Warning" Tag="{x:Static arc:StatusIndicatorState.Warning}" Variant="Secondary" Click="OnStateClick" />
+            <arc:Button Content="Fault" Tag="{x:Static arc:StatusIndicatorState.Fault}" Variant="Secondary" Click="OnStateClick" />
+        </WrapPanel>
+        <WrapPanel ItemSpacing="24" LineSpacing="16">
+            <arc:Switch x:Name="Blink" Content="Blink" IsChecked="False" />
+            <arc:Switch x:Name="Labels" Content="Label" IsChecked="True" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

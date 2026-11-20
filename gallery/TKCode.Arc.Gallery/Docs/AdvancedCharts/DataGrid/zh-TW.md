@@ -1,7 +1,7 @@
 ---
 title: 資料表格
 summary: 試算表式的表格：範圍選取、就地編輯、填滿控點、剪貼簿、復原、排序、篩選、分組、總計與匯出。
-source-hash: f81bf7556a40
+source-hash: 103f5b84a8d3
 ---
 
 <Demo name="Renewals" />
@@ -320,9 +320,19 @@ await grid.ExportAsync(DataGridExportFormat.Xlsx);
 
 ### 伺服器端資料
 
-資料量過大、無法一次傳送時，將 `DataSource` 設為 `IDataGridDataSource`。表格會請求涵蓋可視列的資料區塊，在載入期間顯示預留位置列，並最多保留 40 個資料區塊。排序、篩選或搜尋變動時，它會重新開始並取消進行中的請求。此時表格為唯讀，不分組，隱藏「全選」，匯出時僅匯出已勾選的列。還需要設定 `RowKeySelector`，使用資料來源時它是必要的。
+資料量過大、無法一次傳送時，將 `DataSource` 設為 `IDataGridDataSource`。表格會請求涵蓋可視列的資料區塊，在載入期間顯示預留位置列，並最多保留 40 個資料區塊。排序、篩選或搜尋變動時，它會重新開始並取消進行中的請求。一般資料來源為唯讀；遠端模式不分組，隱藏「全選」，匯出時僅匯出已勾選的列。還需要設定 `RowKeySelector`，使用資料來源時它是必要的。
 
 <Demo name="ServerData" />
+
+### 遠端儲存格編輯
+
+實作 `IDataGridEditableDataSource` 即可選擇啟用儲存格寫入。`UpdateCellAsync` 接收 `DataGridCellChange`，持久化成功後傳回穩定列鍵相同的替換列。不要修改傳入的原列；拒絕儲存時擲回例外。權限、版本檢查和持久化由伺服器負責。
+
+<Demo name="RemoteEditing" />
+
+文字、單選、日期、布林和自訂 `EditTemplate` 編輯器重複使用剖析、阻止式驗證、`CanEditCell` 和 `CellEditEnding`。`IsCellCommitPending` 表示唯一的進行中寫入，並暫停編輯器輸入。儲存期間 `CommitEdit()` 傳回 false；`await CommitEditAsync()` 等待確認。成功後 `CellsChanged` 僅觸發一次，攜帶權威傳回列和值；表格隨後重讀目前查詢，確認列位置、篩選、列數和總計。查詢重讀完成與儲存完成是兩個時點。
+
+儲存失敗保留原列和草稿。`CancelEdit()` 或 Escape 取消目前介面編輯；資料來源、查詢、欄、範本變動或控制項卸載會捨棄延遲結果。取消不能保證伺服器沒有執行寫入，重試前應確認伺服器狀態。不會自動重試，不支援遠端批次貼上、填滿、刪除或本機復原。原唯讀資料來源與本機編輯契約繼續可用。
 
 ### 隔行變色
 

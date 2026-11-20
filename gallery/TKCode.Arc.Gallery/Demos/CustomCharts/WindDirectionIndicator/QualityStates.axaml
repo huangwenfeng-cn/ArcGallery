@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.WindDirectionIndicatorQualityStatesDemo">
+    <!-- 从左到右为有效、缺测、过期、异常；四个实例保存相同的 22.5 度。
+         非有效实例即使关闭底部读数，也必须在圆心显示质量文字并隐藏旧方向指针。 -->
+    <WrapPanel HorizontalAlignment="Center" ItemSpacing="16" LineSpacing="16">
+        <arc:WindDirectionIndicator Direction="22.5" ShowReading="True" />
+        <arc:WindDirectionIndicator Direction="22.5" Quality="NoData" />
+        <arc:WindDirectionIndicator Direction="22.5" Quality="Stale" />
+        <arc:WindDirectionIndicator Direction="22.5" Quality="Error" />
+    </WrapPanel>
+</UserControl>

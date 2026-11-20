@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.LevelIndicatorReadingsDemo"
+             x:Name="Feedback">
+    <StackPanel Spacing="20">
+        <!-- x:Name 让后台代码能访问这个控件；#Feedback 指向根 UserControl。
+             绑定的方向是 SampleQuality 数据源更新后推动 Quality 更新，
+             实际项目可绑定 ViewModel，而无需把采集逻辑放进液位计。 -->
+        <arc:LevelIndicator x:Name="Tank" Label="储罐液位" Value="45"
+                            Quality="{Binding #Feedback.SampleQuality}" />
+        <arc:Slider x:Name="Level" Minimum="0" Maximum="100" Value="45" />
+        <WrapPanel HorizontalAlignment="Center" ItemSpacing="12" LineSpacing="12">
+            <arc:Button Content="低液位 12 %" Variant="Secondary" Click="OnLowClick" />
+            <arc:Button Content="正常 45 %" Variant="Secondary" Click="OnNormalClick" />
+            <arc:Button Content="高液位 92 %" Variant="Secondary" Click="OnHighClick" />
+            <!-- Content 是给人看的文字，Tag 保存程序使用的枚举；
+                 x:Static 读取枚举常量，Click 连接后台的统一处理函数。 -->
+            <arc:Button Content="无数据" Tag="{x:Static arc:MeasurementQuality.NoData}" Variant="Secondary" Click="OnQualityClick" />
+            <arc:Button Content="数据过期" Tag="{x:Static arc:MeasurementQuality.Stale}" Variant="Secondary" Click="OnQualityClick" />
+            <arc:Button Content="采集异常" Tag="{x:Static arc:MeasurementQuality.Error}" Variant="Secondary" Click="OnQualityClick" />
+            <arc:Button Content="恢复数据" Tag="{x:Static arc:MeasurementQuality.Good}" Variant="Secondary" Click="OnQualityClick" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

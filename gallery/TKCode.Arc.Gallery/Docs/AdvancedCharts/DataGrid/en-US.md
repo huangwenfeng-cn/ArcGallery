@@ -426,10 +426,29 @@ The writers, clipboard helpers and parsers are public static classes (`DataGridC
 
 For data too large to send at once, set `DataSource` to an `IDataGridDataSource`. The grid requests the blocks that cover
 the rows in view, shows placeholder rows while they load, and keeps up to 40 blocks. When the sort, filters or search
-change, it starts over and cancels the requests in flight. The grid is then read only, does not group, hides Select all
+change, it starts over and cancels the requests in flight. A plain data source is read only; the grid does not group, hides Select all
 and exports only checked rows. Set `RowKeySelector` as well, which is required with a data source.
 
 <Demo name="ServerData" />
+
+### Remote cell editing
+
+Implement `IDataGridEditableDataSource` to opt into single-cell writes. `UpdateCellAsync` receives a
+`DataGridCellChange` and returns a replacement row with the same stable key after persistence succeeds.
+Keep the supplied row unchanged; throw to reject a save. The server owns authorization, version checks and persistence.
+
+<Demo name="RemoteEditing" />
+
+Text, select, date, Boolean and custom `EditTemplate` editors reuse parsing, blocking validation,
+`CanEditCell` and `CellEditEnding`. `IsCellCommitPending` reports the single pending write and pauses editor input.
+`CommitEdit()` returns false while saving; `await CommitEditAsync()` waits for confirmation.
+`CellsChanged` fires once after success, with the authoritative row and value. The grid then reloads the current query
+to confirm row positions, filtering, row count and totals. Query reload completion is separate from save completion.
+
+A failed save keeps the original row and draft. `CancelEdit()` or Escape cancels the pending UI edit.
+Source, query, column or template changes and detaching discard late results. Cancellation does not guarantee
+that the server did not write; check server state before retrying. There is no automatic retry, remote bulk
+paste/fill/delete or local undo for server writes. The read-only data source and local editing contracts remain available.
 
 ### Striped rows
 

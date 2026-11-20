@@ -4,6 +4,58 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" target-language="zh-TW" datatype="plaintext" original="TKCode.Arc">
     <body>
+      <trans-unit id="Thermometer.Quality">
+        <source>Application-provided measurement quality (default Good); other states hide the number and liquid without changing Value or State. No timeout is inferred.</source>
+        <target>應用程式提供的測量品質，預設 Good；其他狀態隱藏數字和液柱，不改變 Value 或 State。控制項不判定逾時。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.NoDataLabel">
+        <source>Custom missing-data text; null follows the application's language.</source>
+        <target>自訂無資料文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.StaleLabel">
+        <source>Custom stale-measurement text; null follows the application's language.</source>
+        <target>自訂資料過期文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="Thermometer.ErrorLabel">
+        <source>Custom collection-error text; null follows the application's language.</source>
+        <target>自訂擷取異常文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.Quality">
+        <source>Application-provided measurement quality (default Good); other states hide the direction. HasData=false always shows no data. No timeout is inferred.</source>
+        <target>應用程式提供的測量品質，預設 Good；其他狀態隱藏方向。HasData=false 始終顯示無資料。控制項不判定逾時。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.StaleLabel">
+        <source>Custom stale-measurement text; null follows the application's language.</source>
+        <target>自訂資料過期文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="WindDirectionIndicator.ErrorLabel">
+        <source>Custom collection-error text; null follows the application's language.</source>
+        <target>自訂擷取異常文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="StatusIndicator">
+        <source>A read-only device status lamp with localized text and optional Full-motion blinking; the application owns state and alarms.</source>
+        <target>唯讀設備狀態燈，提供本地化文字和可選 Full 動效閃爍；狀態和警報由應用程式負責。</target>
+      </trans-unit>
+      <trans-unit id="StatusIndicator.State">
+        <source>Application-provided state (default Unknown); changing it updates text and color immediately.</source>
+        <target>應用程式提供的狀態，預設 Unknown；改變時立即更新文字和顏色。</target>
+      </trans-unit>
+      <trans-unit id="StatusIndicator.Label">
+        <source>Custom status text; null uses the localized state name. Set an automation name to identify the device.</source>
+        <target>自訂狀態文字；null 使用本地化狀態名稱。請透過無障礙名稱標識設備。</target>
+      </trans-unit>
+      <trans-unit id="StatusIndicator.ShowLabel">
+        <source>Whether status text is visible (default true); accessibility always exposes the actual text.</source>
+        <target>是否顯示狀態文字，預設 true；無障礙始終提供實際文字。</target>
+      </trans-unit>
+      <trans-unit id="StatusIndicator.IsBlinking">
+        <source>Whether to pulse the lamp once per second (default false); Reduced and Off motion remain steady.</source>
+        <target>是否讓燈以一秒為週期閃爍，預設 false；Reduced 和 Off 動效保持恆亮。</target>
+      </trans-unit>
+      <trans-unit id="StatusIndicator.DisplayText">
+        <source>Resolved custom or localized status text, available for read-only binding.</source>
+        <target>解析後的自訂或本地化狀態文字，支援唯讀繫結。</target>
+      </trans-unit>
       <trans-unit id="WindDirectionIndicator">
         <source>A read-only compass showing meteorological wind origin, with an optional direction reading and explicit calm or missing-data states.</source>
         <target>唯讀羅盤，顯示氣象風的來向，提供可選方向讀數以及明確的靜風、無資料狀態。</target>
@@ -35,6 +87,90 @@
       <trans-unit id="WindDirectionIndicator.NoDataLabel">
         <source>Custom missing-data text; null follows the application's language.</source>
         <target>自訂無資料文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator">
+        <source>A read-only level meter that fills a vessel with a spring-driven liquid column, drawn beside a scale with the actual reading and a named threshold state.</source>
+        <target>唯讀液位儀表，用彈簧液柱填充罐體，旁邊帶刻度、實際讀數與明確的閾值狀態。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.Value">
+        <source>The actual level; an out-of-range reading is kept while the liquid is clamped to the range.</source>
+        <target>實際液位；越界讀數仍保留，液體限制在量程內。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.Quality">
+        <source>Application-provided measurement quality (default Good); other states hide the number and liquid without changing Value or the state band. No timeout is inferred.</source>
+        <target>應用程式提供的測量品質，預設 Good；其他狀態隱藏數字與液體，不改變 Value 或液位區間。控制項不判定逾時。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.NoDataLabel">
+        <source>Custom missing-data text; null follows the application's language.</source>
+        <target>自訂無資料文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.StaleLabel">
+        <source>Custom stale-measurement text; null follows the application's language.</source>
+        <target>自訂資料過期文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.ErrorLabel">
+        <source>Custom collection-error text; null follows the application's language.</source>
+        <target>自訂擷取異常文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.Minimum">
+        <source>Lower end of the measurement range (default 0).</source>
+        <target>量程下限，預設為 0。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.Maximum">
+        <source>Upper end of the measurement range (default 100).</source>
+        <target>量程上限，預設為 100。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.LowThreshold">
+        <source>Readings below this value are low (default 20).</source>
+        <target>讀數低於此值時為低液位，預設為 20。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.HighThreshold">
+        <source>Readings at or above this value are high (default 80).</source>
+        <target>讀數大於等於此值時為高液位，預設為 80。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.Label">
+        <source>What is measured; shown above the vessel and used as the accessible name.</source>
+        <target>測量對象，顯示在罐體上方，同時作為無障礙名稱。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.Unit">
+        <source>The display unit (default %); changing it does not convert values or thresholds.</source>
+        <target>顯示單位，預設為 %；修改單位不會轉換數值或閾值。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.TickCount">
+        <source>Number of scale divisions, from 1 to 10 (default 4); every division keeps a visible label.</source>
+        <target>刻度分格數，範圍為 1～10，預設為 4；每一格都保留可見的刻度值。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.ShowScale">
+        <source>Whether to draw the scale and its values (default true).</source>
+        <target>是否顯示刻度及其數值，預設為 true。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.LowTone">
+        <source>Color family for low readings (default Danger: a nearly empty vessel is usually the alarm).</source>
+        <target>低液位讀數的色調，預設為 Danger：罐體接近空通常意味著警報。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.NormalTone">
+        <source>Color family for normal readings (default Success).</source>
+        <target>正常讀數的色調，預設為 Success。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.HighTone">
+        <source>Color family for high readings (default Danger: an overfilled vessel is an alarm).</source>
+        <target>高液位讀數的色調，預設為 Danger：罐體過滿意味著警報。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.LowLabel">
+        <source>Custom low-state text; null uses the app's language.</source>
+        <target>自訂低液位狀態文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.NormalLabel">
+        <source>Custom normal-state text; null uses the app's language.</source>
+        <target>自訂正常狀態文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.HighLabel">
+        <source>Custom high-state text; null uses the app's language.</source>
+        <target>自訂高液位狀態文字；null 時跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LevelIndicator.State">
+        <source>The band of the actual reading; changes immediately, independently of animation.</source>
+        <target>實際讀數的液位區間，立即變更，不受動畫影響。</target>
       </trans-unit>
       <trans-unit id="ArcWindow.UnavailableCaptionButtons">
         <source>What the drawn minimize and maximize buttons show while the window does not allow them (`CanMinimize`, or `CanResize` and `CanMaximize`, false): `Disable` (the default) keeps them disabled, `Hide` hides them. Inherited by the window's `TitleBar` and any `WindowCaptionButtons` in it. The macOS traffic lights are the system's and stay as they are.</source>
@@ -11121,8 +11257,8 @@
         <target>格式化和解析值所用的文化；為 null 時跟隨 Arc 的語言。</target>
       </trans-unit>
       <trans-unit id="DataGrid.DataSource">
-        <source>Loads rows from a server one block at a time as people scroll, instead of `ItemsSource`. The grid is then read only, does not group, hides Select all and exports only checked rows.</source>
-        <target>取代 `ItemsSource`，在捲動時從伺服器分塊載入列。此時表格為唯讀、不分組、隱藏全選，並且只匯出勾選列。</target>
+        <source>Loads rows from a server one block at a time as people scroll, instead of `ItemsSource`. The grid is read only unless the source implements `IDataGridEditableDataSource`, does not group, hides Select all and exports only checked rows.</source>
+        <target>取代 `ItemsSource`，在捲動時從伺服器分塊載入列。除非資料來源實作 `IDataGridEditableDataSource`，否則表格為唯讀；遠端模式不分組、隱藏全選，並且只匯出勾選列。</target>
       </trans-unit>
       <trans-unit id="DataGrid.Density">
         <source>Row density (two-way): Compact 32px, Standard 40px or Comfortable 48px rows.</source>
@@ -42775,6 +42911,98 @@
       <trans-unit id="Field.LabelWidth">
         <source>Width of the label column when `LabelPlacement` is Left. NaN (default) sizes it to the widest left label under the element that sets the placement (or the width, or `Grid.IsSharedSizeScope`), up to 240 px; longer labels wrap. Inherited.</source>
         <target>`LabelPlacement` 為 Left 時的標籤欄寬度。NaN（預設）採用設定位置、寬度或 `Grid.IsSharedSizeScope` 的元素下最寬的左側標籤，上限為 240 px；更長的標籤換行。可繼承。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge">
+        <source>A read-only vertical range meter with a narrow bar, scale, actual reading and named threshold states.</source>
+        <target>唯讀直向量程儀表，包含窄柱條、刻度、實際讀值及明確的閾值狀態。</target>
+      </trans-unit>
+      <trans-unit id="DataGrid.IsCellCommitPending">
+        <source>Whether one server cell write is awaiting confirmation.</source>
+        <target>是否有一個伺服器儲存格寫入正在等待確認。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Value">
+        <source>The actual reading; the bar is clamped to the range while the number keeps out-of-range values.</source>
+        <target>實際讀值；柱條限制在量程內，數字保留越界值。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Minimum">
+        <source>Lower range bound (default 0).</source>
+        <target>量程下限，預設 0。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Maximum">
+        <source>Upper range bound (default 100).</source>
+        <target>量程上限，預設 100。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.LowThreshold">
+        <source>Readings below this value are low (default 20).</source>
+        <target>低於此值屬於偏低區間，預設 20。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.HighThreshold">
+        <source>Readings at or above this value are high (default 80).</source>
+        <target>達到或超過此值屬於偏高區間，預設 80。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Label">
+        <source>The measured quantity, shown above the track and used as the accessible name.</source>
+        <target>測量名稱，顯示在軌道上方並用作無障礙名稱。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Unit">
+        <source>Display unit (default empty); does not convert readings or thresholds.</source>
+        <target>顯示單位，預設空；不轉換讀值與閾值。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Decimals">
+        <source>Decimal places in the actual reading, from 0 to 6 (default 1).</source>
+        <target>實際讀值的小數位，0～6，預設 1。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.TickCount">
+        <source>Number of scale divisions, from 1 to 10 (default 4).</source>
+        <target>刻度分段數，1～10，預設 4。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.ShowScale">
+        <source>Whether the scale and its values are visible (default true).</source>
+        <target>是否顯示刻度及數字，預設 true。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.LowTone">
+        <source>Color family for low readings (default Warning).</source>
+        <target>偏低讀值的色調，預設 Warning。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.NormalTone">
+        <source>Color family for normal readings (default Accent).</source>
+        <target>正常讀值的色調，預設 Accent。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.HighTone">
+        <source>Color family for high readings (default Danger).</source>
+        <target>偏高讀值的色調，預設 Danger。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.LowLabel">
+        <source>Custom low-state text; null follows the application language.</source>
+        <target>自訂偏低文字；null 跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.NormalLabel">
+        <source>Custom normal-state text; null follows the application language.</source>
+        <target>自訂正常文字；null 跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.HighLabel">
+        <source>Custom high-state text; null follows the application language.</source>
+        <target>自訂偏高文字；null 跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.Quality">
+        <source>Application-provided measurement quality (default Good); other states hide the bar and number without changing Value or State. No timeout is inferred.</source>
+        <target>應用程式提供的測量品質，預設 Good；其他狀態隱藏柱條與數字，不改變 Value 或 State。控制項不判定逾時。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.NoDataLabel">
+        <source>Custom missing-data text; null follows the application language.</source>
+        <target>自訂無資料文字；null 跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.StaleLabel">
+        <source>Custom stale-data text; null follows the application language.</source>
+        <target>自訂資料過期文字；null 跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.ErrorLabel">
+        <source>Custom collection-error text; null follows the application language.</source>
+        <target>自訂擷取異常文字；null 跟隨應用程式語言。</target>
+      </trans-unit>
+      <trans-unit id="LinearGauge.State">
+        <source>The threshold band of the actual reading; updates immediately, independently of bar motion.</source>
+        <target>實際讀值的閾值區間；立即更新，不受柱條動畫影響。</target>
       </trans-unit>
     </body>
   </file>

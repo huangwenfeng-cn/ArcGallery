@@ -1,10 +1,12 @@
 ---
 title: 温度计
 summary: 只读温度仪表，包含液柱、刻度、实际读数和明确的高低温状态。
-source-hash: 98cd5315b681
+source-hash: dc222a6e8299
 ---
 
 <Demo name="Readings" />
+
+<Demo name="QualityStates" />
 
 ## 何时使用
 
@@ -26,6 +28,10 @@ source-hash: 98cd5315b681
 
 将 `Value` 绑定到视图模型中的测量值，并在 UI 线程更新。越界读数仍完整显示，液柱停在量程边界。量程颠倒、上下限相等或阈值颠倒时，显示 `InvalidRange` 并清空液柱；不接受 NaN 或无穷值。
 
+将 `Quality` 绑定到应用提供的 `MeasurementQuality`：`Good`（默认）、`NoData`、`Stale` 或 `Error`。非 Good 时隐藏液柱，当前数字替换为破折号；质量文字优先于高低温及量程错误文字。`Value` 和阈值 `State` 仍保留，使用保存值前应检查质量。时间戳、超时规则和传感器诊断由应用负责，控件不轮询。恢复时先更新数值，再设置 `Good`。
+
+`NoDataLabel`、`StaleLabel`、`ErrorLabel` 覆盖质量文字；null 时跟随应用语言。交互示例将 `Quality` 绑定到可观察的采样数据源，增加质量与恢复按钮。移动滑块或点击温度按钮恢复 `Good`，同值按钮也能恢复。
+
 `LowTone`、`NormalTone` 和 `HighTone` 选择已有的 Arc 色调。三种状态的文字可通过 `LowLabel`、`NormalLabel`、`HighLabel` 覆盖，为 null 时跟随应用语言。`ShowScale` 控制刻度显示，`TickCount` 控制分格数。
 
 示例只保留一个温度计，滑块和温度按钮更新同一个读数。达到量程上限时，液体会完整填充顶部圆弧；液面与刻度共用相同的内部高度。
@@ -38,9 +44,13 @@ source-hash: 98cd5315b681
 
 温度计提供只读的范围值，以标签作为无障碍名称，帮助文本包含实际读数、单位与状态。控件不接收焦点或用户输入。`State` 立即变化，与液柱动画无关。
 
+非 Good 时，帮助文字和只读文本值只报告质量状态。为保持兼容，原数值范围接口仍返回保存的、限制到量程内的数值；使用者应检查质量后再视为当前值。
+
 ## 动效
 
 仅液柱使用可中断的 Arc 弹簧。数字、颜色和状态始终描述实际读数。Reduced 与 Off 模式立即到达目标。切换主题时颜色和字体自动跟随 ArcDesign 令牌；标题和读数使用 `WeightMedium`，状态和刻度使用 `WeightRegular`。
+
+质量变化立即生效并停止液柱动效。质量恢复或重新挂载后的首个读数直接到达目标。
 
 ## 响应式行为
 

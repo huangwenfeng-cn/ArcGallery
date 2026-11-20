@@ -14,7 +14,7 @@ library for Avalonia 12. The libraries are not here: every project builds agains
 
 ## Rules
 
-本工作区后续新增和修改代码还须遵循 `../implementation-guide.md`、`../TKCode.Arc/AGENTS.md` 及现有代码风格。该指南是本地源码重建版；冲突时以仓库明文规则为准，不将旧实现中的例外推广为新规则。
+本工作区后续新增和修改代码还须遵循 `../TKCode.Arc/.agents/implementation-guide.md`、`../TKCode.Arc/.agents/AGENTS.md` 及现有代码风格。核心仓库根的 AGENTS.md 和工作区根的 implementation-guide.md 保留兼容入口。该指南是本地源码重建版；冲突时以仓库明文规则为准，不将旧实现中的例外推广为新规则。
 
 - Every Arc component needs docs pages `gallery/TKCode.Arc.Gallery/Docs/<Category>/<Component>/{en-US,zh-CN,zh-TW}.md` (checked by `GalleryDocsTests`), written in this repository when the component is added to TKCode.Arc. Its public properties and events need XML `<summary>` text in TKCode.Arc (they feed the API tables).
 - Every new component or block gets the gallery's "New" badge: its catalog entry carries `AddedOn: "yyyy-MM-dd"`. Arc components: the entry in `gallery/TKCode.Arc.Gallery/Catalog/GalleryCatalog.g.cs` (keep it when regenerating); Extras, Special and Workflow: the entry in `GalleryCatalog.cs`; Blocks and Mobile: the `s_addedOn` table in `GalleryCatalog.cs` (checked by `GalleryNewBadgeTests`).

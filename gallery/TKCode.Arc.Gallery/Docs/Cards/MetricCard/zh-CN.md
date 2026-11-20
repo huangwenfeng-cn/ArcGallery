@@ -1,7 +1,7 @@
 ---
 title: 指标卡
 summary: 仪表盘上的指标卡片：一个数字、它的标签、对比值与可选的变化标签。
-source-hash: c308e2fa9738
+source-hash: c82256a79dae
 ---
 
 <Demo name="Default" />
@@ -169,6 +169,16 @@ public partial class OverviewViewModel : ObservableObject
 - 编译绑定需要在视图上设置 `x:DataType`。示例为简洁起见省略了它。
 
 每次更新时，数字都会滚动到新值，文案则从数字变化的方向滚入，因此每隔几秒到达一次的更新会让这一行持续处于动态之中。对于实时数据流，请以固定间隔更新视图模型，例如每 30 秒一次。
+
+### 测量读数与数据质量
+
+<Demo name="Measurements" />
+
+这个中文演示组合展示风速、相对湿度和气压，复用已有控件。`MetricCard` 保持现有 API 和分类。每项读数的量值、单位及 `MeasurementQuality` 由应用提供，时效和报警也由应用判定。`Change` 表示统计增减方向，不适合作为报警指示。
+
+演示初始为 `NoData`。有效采样创建数值快照，绑定到 `Value`、`Suffix` 和 `Decimals`。`NoData`、`Stale`、`Error` 会把快照换成破折号和明确的质量文字。最后有限值保留在数据源中，但旧计数器会同时从可视树和自动化树移除。有效的零风速仍显示 `0.0 m/s`。非有限值样本降级为 `Error`，保留最后有限值。示例不包含采样计时器或网关。
+
+局部容器设置 `ArcMotion.Level="Off"`，当前读数与恢复立即显示。在 UI 线程调用演示数据源的 SetSample(新值, MeasurementQuality.Good) 恢复；仅改变质量会复用保存值。数据源先完成字段和显示快照，再通知绑定，同值恢复也会更新。编译绑定和带注释的实现见示例的“代码”页；实际应用应从自己的语言资源提供标签和质量文字。
 
 ### 窄窗口
 

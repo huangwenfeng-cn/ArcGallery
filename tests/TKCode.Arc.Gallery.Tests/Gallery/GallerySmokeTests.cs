@@ -37,12 +37,12 @@ public class GallerySmokeTests
             + GalleryCatalog.Blocks.AllEntries.Count() + GalleryCatalog.Screens.AllEntries.Count() + GalleryCatalog.Special.Sum(c => c.Entries.Length) + GalleryCatalog.Mobile.Entries.Length);
         GalleryCatalog.AllEntries.Select(e => e.ClassName).ShouldBeUnique();
         // The sidebar footer counts the whole Components section, extras included.
-        // 两个本地组件迁入自定义分类后，原有目录统计恢复，侧栏组件总数保持 165。
-        GalleryCatalog.CustomCharts.Entries.Select(e => e.ClassName).ShouldBe(["Thermometer", "WindDirectionIndicator"]);
+        // 工业展示组件继续放在 CustomCharts；原有分类统计保持独立。
+        GalleryCatalog.CustomCharts.Entries.Select(e => e.ClassName).ShouldBe(["Thermometer", "WindDirectionIndicator", "StatusIndicator", "LevelIndicator", "LinearGauge"]);
         var categories = GalleryCatalog.AllCategories.ToList();
         categories[categories.FindIndex(c => c.Code == "Charts") + 1].Code.ShouldBe("CustomCharts");
-        GalleryCatalog.ComponentCount.ShouldBe(GalleryCatalog.Count + 36);
-        GalleryCatalog.ComponentCount.ShouldBe(165);
+        GalleryCatalog.ComponentCount.ShouldBe(GalleryCatalog.Count + 39);
+        GalleryCatalog.ComponentCount.ShouldBe(168);
         GalleryCatalog.ComponentEntries.Count().ShouldBe(GalleryCatalog.ComponentCount);
     }
 

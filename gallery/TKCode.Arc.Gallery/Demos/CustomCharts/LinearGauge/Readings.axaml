@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.LinearGaugeReadingsDemo"
+             x:Name="Feedback">
+    <StackPanel Spacing="20">
+        <!-- 三种测量复用同一个通用控件；数值、单位和阈值由应用提供。
+             拉力交互区的质量绑定到演示数据源；另两项展示不同量程。 -->
+        <WrapPanel HorizontalAlignment="Center" ItemSpacing="28" LineSpacing="20">
+            <arc:LinearGauge x:Name="Force" Label="拉力" Unit="N" Value="450"
+                             Minimum="0" Maximum="1000" LowThreshold="200" HighThreshold="800"
+                             Decimals="0" Quality="{Binding #Feedback.SampleQuality}" />
+            <arc:LinearGauge Label="压力" Unit="MPa" Value="0.65"
+                             Minimum="0" Maximum="1" LowThreshold="0.2" HighThreshold="0.8"
+                             Decimals="2" />
+            <arc:LinearGauge Label="转速" Unit="rpm" Value="1800"
+                             Minimum="0" Maximum="3000" LowThreshold="600" HighThreshold="2400"
+                             Decimals="0" />
+        </WrapPanel>
+        <arc:Slider x:Name="Reading" Minimum="0" Maximum="1000" Value="450" />
+        <WrapPanel HorizontalAlignment="Center" ItemSpacing="12" LineSpacing="12">
+            <arc:Button Content="偏低 120 N" Variant="Secondary" Tag="120" Click="OnReadingClick" />
+            <arc:Button Content="正常 450 N" Variant="Secondary" Tag="450" Click="OnReadingClick" />
+            <arc:Button Content="偏高 920 N" Variant="Secondary" Tag="920" Click="OnReadingClick" />
+            <arc:Button Content="满量程 1000 N" Variant="Secondary" Tag="1000" Click="OnReadingClick" />
+            <arc:Button Content="无数据" Variant="Secondary" Tag="{x:Static arc:MeasurementQuality.NoData}" Click="OnQualityClick" />
+            <arc:Button Content="数据过期" Variant="Secondary" Tag="{x:Static arc:MeasurementQuality.Stale}" Click="OnQualityClick" />
+            <arc:Button Content="采集异常" Variant="Secondary" Tag="{x:Static arc:MeasurementQuality.Error}" Click="OnQualityClick" />
+            <arc:Button Content="恢复数据" Variant="Secondary" Tag="{x:Static arc:MeasurementQuality.Good}" Click="OnQualityClick" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

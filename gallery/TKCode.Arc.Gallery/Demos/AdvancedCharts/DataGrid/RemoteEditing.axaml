@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arc="https://github.com/AIDotNet/TKCode.Arc"
+             x:Class="TKCode.Arc.Gallery.Demos.DataGridRemoteEditingDemo">
+    <StackPanel Spacing="12">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <arc:Checkbox x:Name="RejectWrites" Content="Reject saves" />
+            <arc:Button x:Name="CancelSave" Content="Cancel edit" />
+        </StackPanel>
+        <arc:DataGrid x:Name="RecordsGrid" Label="Remote records" MaxViewportHeight="300" ExportFormats="Csv">
+            <arc:DataGridColumn Key="name" Header="Name" Width="200" />
+            <arc:DataGridColumn Key="amount" Header="Amount" Type="Currency" Decimals="2" Width="150" />
+            <arc:DataGridColumn Key="active" Header="Active" Type="Boolean" Width="120" />
+        </arc:DataGrid>
+    </StackPanel>
+</UserControl>

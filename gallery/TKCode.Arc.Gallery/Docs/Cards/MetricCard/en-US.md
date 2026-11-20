@@ -206,6 +206,27 @@ Each update rolls the digits to the new value and the copy rolls in from the dir
 arriving every few seconds keeps the row in constant motion. For a live feed, update the view model on a fixed
 interval, such as once every 30 seconds.
 
+### Measurement readings and quality
+
+<Demo name="Measurements" />
+
+This Chinese demo composes wind speed, relative humidity and pressure readings without adding a new control.
+`MetricCard` keeps its existing API and category. The application owns each reading's value, unit and
+`MeasurementQuality`; it also decides freshness and alarms. `Change` describes statistical direction and is
+not an alarm indicator.
+
+The demo starts with `NoData`. A valid sample creates a numeric snapshot bound to `Value`, `Suffix` and
+`Decimals`. `NoData`, `Stale` and `Error` replace that snapshot with a dash and explicit quality text. The saved
+finite value remains in the data source, but the old counter is removed from both the visual and automation
+trees. A valid zero wind speed still displays `0.0 m/s`. Non-finite samples become `Error`, preserving the last
+finite value. No sample timer or gateway is included.
+
+The local container sets `ArcMotion.Level="Off"` so current readings and recovery appear immediately.
+Call the demo source's SetSample(newValue, MeasurementQuality.Good) on the UI thread to recover; changing quality alone would
+reuse the saved value. The source completes its fields and display snapshot before notifying bindings, including
+when recovery repeats the same value. See the demo's Code tab for the compiled bindings and commented source;
+provide labels and quality messages from your application's language resources.
+
 ### Narrow windows
 
 In a window that is 380 px wide or less, the card uses tighter padding (16 px), the top row sits 24 px above the

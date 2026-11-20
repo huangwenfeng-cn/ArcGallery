@@ -1,7 +1,7 @@
 ---
 title: 数据表格
 summary: 电子表格式的表格：范围选择、就地编辑、填充柄、剪贴板、撤销、排序、筛选、分组、合计与导出。
-source-hash: f81bf7556a40
+source-hash: 103f5b84a8d3
 ---
 
 <Demo name="Renewals" />
@@ -320,9 +320,19 @@ await grid.ExportAsync(DataGridExportFormat.Xlsx);
 
 ### 服务端数据
 
-数据量过大、无法一次发送时，将 `DataSource` 设为 `IDataGridDataSource`。网格会请求覆盖可视行的数据块，在加载期间显示占位行，并最多保留 40 个数据块。排序、筛选或搜索变化时，它会重新开始并取消正在进行的请求。此时网格为只读，不分组，隐藏“全选”，导出时仅导出已勾选的行。还需要设置 `RowKeySelector`，使用数据源时它是必需的。
+数据量过大、无法一次发送时，将 `DataSource` 设为 `IDataGridDataSource`。网格会请求覆盖可视行的数据块，在加载期间显示占位行，并最多保留 40 个数据块。排序、筛选或搜索变化时，它会重新开始并取消正在进行的请求。普通数据源为只读；远程模式不分组，隐藏“全选”，导出时仅导出已勾选的行。还需要设置 `RowKeySelector`，使用数据源时它是必需的。
 
 <Demo name="ServerData" />
+
+### 远程单元格编辑
+
+实现 `IDataGridEditableDataSource` 即可选择启用单元格写入。`UpdateCellAsync` 接收 `DataGridCellChange`，持久化成功后返回稳定行键相同的替换行。不要修改传入的原行；拒绝保存时抛出异常。权限、版本检查和持久化由服务端负责。
+
+<Demo name="RemoteEditing" />
+
+文本、单选、日期、布尔和自定义 `EditTemplate` 编辑器复用解析、阻止式校验、`CanEditCell` 和 `CellEditEnding`。`IsCellCommitPending` 表示唯一的在途写入，并暂停编辑器输入。保存期间 `CommitEdit()` 返回 false；`await CommitEditAsync()` 等待确认。成功后 `CellsChanged` 仅触发一次，携带权威返回行和值；网格随后重读当前查询，确认行位置、筛选、行数和总计。查询重读完成与保存完成是两个时点。
+
+保存失败保留原行和草稿。`CancelEdit()` 或 Escape 取消当前界面编辑；数据源、查询、列、模板变化或控件卸载会丢弃迟到结果。取消不能保证服务端没有执行写入，重试前应确认服务端状态。不会自动重试，不支持远程批量粘贴、填充、删除或本地撤销。原只读数据源与本地编辑契约继续可用。
 
 ### 隔行变色
 

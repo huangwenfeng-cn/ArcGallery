@@ -5,6 +5,8 @@ summary: A live wind-origin compass with optional direction reading and explicit
 
 <Demo name="Readings" />
 
+<Demo name="QualityStates" />
+
 ## When to use
 
 Use `WindDirectionIndicator` for the current meteorological wind direction in an HMI or weather panel. The solid pointer points toward the origin of the wind: north is 0°, east 90°, south 180° and west 270°. Two rings frame sixteen ticks and external angle labels at 22.5° intervals. Eight direction labels sit inside, with larger cardinal labels and four triangular markers. The optional reading names the nearest of sixteen directions.
@@ -23,6 +25,10 @@ Bind `Direction` to the view model and update it on the UI thread. Finite direct
 
 Set `IsCalm` when the application reports calm wind: the pointer disappears and a calm label appears in the center. Set `HasData` to false when the sample is unavailable: this overrides calm, hides the pointer, and displays the missing-data label in the center. These states remain visible with `ShowReading` disabled and do not resize the compass. Restore the flags when a valid sample arrives. The application owns calm thresholds and sample quality.
 
+Bind `Quality` to application-provided `MeasurementQuality`: `Good` (default), `NoData`, `Stale` or `Error`. Non-Good quality replaces the pointer and direction reading with centered status text, even with `ShowReading=false`; the saved `Direction` is unchanged. `HasData=false` takes priority and reports no data; otherwise quality takes priority over calm. Timestamps, timeout rules and collection diagnostics belong to the application. Restore `Direction`, quality and flags when a valid sample arrives.
+
+`StaleLabel` and `ErrorLabel` override quality text; null follows the application's language. The interactive demo binds `Quality` to its observable sample source and includes stale, error and recovery buttons. Moving the slider restores `Good`.
+
 `Label` overrides the accessible name; `CalmLabel` and `NoDataLabel` override state text. Null follows the application language. Compass directions are localized in English, Simplified Chinese and Traditional Chinese. The demo contains one compass, a direction slider, two north-crossing buttons, calm/missing-data buttons and a reading toggle. Moving the slider restores a measured reading.
 
 ## API reference
@@ -33,9 +39,13 @@ Set `IsCalm` when the application reports calm wind: the pointer disappears and 
 
 The compass provides a read-only text value with the actual bearing and named direction, or the explicit calm/missing-data state, even when the visual reading is hidden. The localized component name is the default accessible name; `Label` can override it and an application-provided automation name takes precedence. It is not focusable or interactive.
 
+For stale or failed samples, the text value and help text report the quality label without the saved bearing.
+
 ## Motion
 
 Only the arrow animates with an interruptible Arc spring. It takes the shortest path from its current visual position: 359° to 1° crosses north by 2°. Text updates immediately. Reduced and Off motion jump to the target. The first sample after calm, missing data or reattachment appears immediately.
+
+Quality changes stop pointer motion; the first sample after recovery from any non-Good quality appears immediately.
 
 ## Responsive behavior
 
